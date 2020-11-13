@@ -6,10 +6,11 @@ const path = require("path");
 const saucesRoutes = require("./routes/sauces");
 const userRoutes = require("./routes/user");
 
-mongoose.connect('mongodb+srv://admin:FANmicro-130319@cluster0.5tjk1.mongodb.net/<dbname>?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://admin:FANmicro-130319@cluster0.5tjk1.mongodb.net/Pekocko?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     })
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
