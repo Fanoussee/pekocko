@@ -1,8 +1,14 @@
+//Import du package de chiffrement bcrypt
+//pour chiffrer et créer un hash des mots de passe utilisateur
 const bcrypt = require("bcrypt");
+//Import du package jsonwebtoken pour créer un token d'identification
+//pour chaque utilisateur connecté et authentifié
 const jwt = require("jsonwebtoken");
 
+//Import du modèle user
 const User = require("../models/User");
 
+//Middleware pour l'inscription d'un utilisateur
 exports.signUp = function (req, res, next) {
     bcrypt.hash(req.body.password, 10)
         .then(function(hash){
@@ -23,6 +29,7 @@ exports.signUp = function (req, res, next) {
         });
 };
 
+//Middleware pour la connexion d'un utilisateur
 exports.login = function (req, res, next) {
     User.findOne({ email: req.body.email })
         .then(function(user){

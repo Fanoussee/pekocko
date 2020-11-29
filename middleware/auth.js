@@ -1,5 +1,10 @@
+//Import du package jsonwebtoken pour créer un token d'identification
+//pour chaque utilisateur connecté et authentifié
 const jwt = require("jsonwebtoken");
 
+//Ce middleware permettra de protéger les routes sélectionnées
+//et permettra de vérifier que l'utilisateur est authentifié
+//avant d'autoriser l'envoi de requêtes
 module.exports = function(req, res, next){
     try{
         const token = req.headers.authorization.split(" ")[1];

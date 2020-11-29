@@ -1,6 +1,9 @@
+//Import du modèle de sauce
 const Sauce = require("../models/Sauce");
+//Import du file system
 const fs = require("fs");
 
+//Middleware pour la création d'une sauce
 exports.createSauce = function (req, res, next) {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -19,6 +22,7 @@ exports.createSauce = function (req, res, next) {
         });
 };
 
+//Middleware pour modifier une sauce
 exports.modifySauce = function (req, res, next) {
     const sauceObject = req.file ?
         {
@@ -34,6 +38,7 @@ exports.modifySauce = function (req, res, next) {
         });
 };
 
+//Middleware pour supprimer une sauce
 exports.deleteSauce = function (req, res, next) {
     Sauce.findOne({ _id: req.params.id })
         .then(function (sauce) {
@@ -53,6 +58,7 @@ exports.deleteSauce = function (req, res, next) {
         });
 };
 
+//Middleware pour récupérer une sauce à l'aide de son identifiant
 exports.getOneSauce = function (req, res, next) {
     Sauce.findOne({ _id: req.params.id })
         .then(function (sauce) {
@@ -63,6 +69,7 @@ exports.getOneSauce = function (req, res, next) {
         });
 };
 
+//Middleware pour récupérer toutes les sauces
 exports.getAllSauces = function (req, res, next) {
     Sauce.find()
         .then(function (sauces) {
@@ -73,6 +80,7 @@ exports.getAllSauces = function (req, res, next) {
         });
 };
 
+//Middleware pour liker ou disliker une sauce
 exports.likeOneSauce = function (req, res, next) {
     const sauceId = req.params.id;
     const userId = req.body.userId;
